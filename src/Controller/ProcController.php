@@ -30,11 +30,9 @@ class ProcController extends AbstractController
      */
     public function signIn()
     {
-
-
         try {
 
-            if (isset($_POST['login'])) {
+            if (isset($_POST['login']) && isset($_POST['pwd1']) && isset($_POST['pwd2'])) {
 
                 $user = new User();
                 $user->setName($_POST['login']);
@@ -55,9 +53,13 @@ class ProcController extends AbstractController
                 throw new \Exception('Erreur de récupération des données.');
             }
         }catch(\Exception $e){
-            echo $e->getMessage();
+            $data['error'] = $e->getMessage();
+            echo json_encode($data);
             exit();
         }
+
+        $data['success']='Inscription réalisé avec succes.';
+        echo json_encode($data);
 
 
 
