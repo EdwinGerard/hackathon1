@@ -5,8 +5,9 @@
  * Date: 05/04/18
  * Time: 19:51
  */
-
 namespace Controller;
+
+use Model\games;
 
 
 class GamesController extends AbstractController
@@ -26,3 +27,8 @@ class GamesController extends AbstractController
         return $this->twig->render('Games/games.html.twig');
     }
 }
+
+$newGameOne = new game();
+
+$newGameOne->getGameName($POST['gameName']);
+$newGameOne->setIdPlayer1($USERSESSION_TOODOO);

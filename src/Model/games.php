@@ -16,14 +16,6 @@ private $gameName;
 private $idPlayer1;
 private $idPlayer2;
 
-public function __construct( int $id, string $gameName, string $idPlayer1 )
-{
-    $this->setId($id);
-    $this->setGameName($gameName);
-    $this->setIdPlayer1($idPlayer1);
-}
-
-
     /*GETTER // SETTER */
 
     /**
