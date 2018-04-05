@@ -33,15 +33,23 @@ class ProcController extends AbstractController
 
 
         try {
-            if (isset($_POST['sub_sign_in'])) {
+
+            if (isset($_POST['login'])) {
 
                 $user = new User();
                 $user->setName($_POST['login']);
                 $user->checkPassword($_POST['pwd1'],$_POST['pwd2']);
                 $user->setPassword($_POST['pwd1']);
 
+
+
                 $userManager = new UserManager();
+                if($userManager->checkUserExist($_POST['login'])){
+                    throw new \Exception('Login déjà éxistant');
+                }
+
                 $userManager->addUser($user);
+
             }
             else {
                 throw new \Exception('Erreur de récupération des données.');

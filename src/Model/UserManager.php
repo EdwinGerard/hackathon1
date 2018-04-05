@@ -34,4 +34,19 @@ class UserManager extends AbstractManager
         $statement->bindValue(':password', $user->getPassword() );
         $statement->execute();
     }
+
+    public function checkUserExist(string $userName):bool
+    {
+        $sql = 'SELECT id FROM user WHERE name=:userName';
+        $statement = $this->pdoConnection->prepare($sql);
+        $statement->setFetchMode(\PDO::FETCH_CLASS, $this->className);
+        $statement->bindValue(':userName', $userName);
+        $statement->execute();
+        $result = $statement->fetch();
+        if (empty($result)){
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
