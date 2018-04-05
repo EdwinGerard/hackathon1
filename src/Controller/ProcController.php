@@ -12,7 +12,6 @@ namespace Controller;
 use Model\User;
 use Model\UserManager;
 
-use Model\ProcManager;
 
 /**
  * Class ItemController
@@ -66,6 +65,47 @@ class ProcController extends AbstractController
         //return $this->twig->render('Home/signin.html.twig',['test',$post]);
     }
 
+    public function connexion(){
+        try
+        {
+            //var_dump($_POST);
+            if (isset($_POST['login']) && isset($_POST['pwd'])) {
+                $userManager = new userManager();
+                $user = $userManager->checkConnexion($_POST['login'],$_POST['pwd']);
+
+                if(empty($user['id'])){
+                    throw new \Exception('Erreur de login ou de mot de passe');
+                }
+
+            }
+            else {
+                throw new \Exception('erreur de récupération des données.');
+            }
+        }
+        catch(\Exception $e)
+        {
+            $data['error'] = $e->getMessage();
+            echo json_encode($data);
+            exit();
+        }
+        $data['success']='Connection réussi.';
+        $data['user']=$user;
+        echo json_encode($data);
+
+        // ouverture de la session
+        session_start();
+        $_SESSION['user']['id']=$user['id'];
+        $_SESSION['user']['name']=$user['name'];
+
+    }
+
+    public function deconnect()
+    {
+        session_start();
+        session_destroy();
+        header('Location: /');
+        exit();
+    }
 
     public function edit(int $id)
     {

@@ -9,14 +9,18 @@
         </li>
     </ul>
 
-        {% if auth is empty %}
+        {% if user is empty %}
 
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#connexionModal">
                    Connexion
                 </button>
-
+            {% else %}
+                <a href="/proc/deconnect"><button type="button" class="btn btn-primary">
+                   Se déconnecter
+                </button></a>
 
         {% endif %}
+        <div>{{ user.name }}</div>
 
 
 
@@ -25,7 +29,7 @@
 
 
 <!-- The Modal -->
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="connexionModal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
@@ -37,18 +41,20 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form action="/action_page" method="post">
+                <div id="boxErrorNav" class="alert alert-danger text-center"></div>
+                <form action="/proc/connexion" method="POST" id="form_connexion">
                     <div class="form-group">
                         <label for="login">Login:</label>
-                        <input type="text" class="form-control" id="login">
+                        <input type="text" class="form-control" id="login" name="login">
                     </div>
                     <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd">
+                        <input type="password" class="form-control" id="pwd" name="pwd">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+                <div id="boxSuccessNav" class="alert alert-success text-center"></div>
             </div>
 
             <!-- Modal footer -->
@@ -61,6 +67,5 @@
         </div>
     </div>
 </div>
-{% block javascript %}
 
-{% endblock %}
+

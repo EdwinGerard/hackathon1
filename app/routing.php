@@ -31,6 +31,8 @@ $routes = [
 
     'Proc' => [
         ['signIn','/proc/sign_in',['GET', 'POST']],
+        ['connexion','/proc/connexion',['GET', 'POST']],
+        ['deconnect','/proc/deconnect',['GET', 'POST']],
     ],
 
 ];
