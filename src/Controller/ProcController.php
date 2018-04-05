@@ -30,7 +30,7 @@ class ProcController extends AbstractController
      */
     public function signIn()
     {
-        print_r($_POST);
+
 
         try {
             if (isset($_POST['sub_sign_in'])) {

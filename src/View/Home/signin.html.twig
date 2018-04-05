@@ -4,6 +4,8 @@
     <div class="container">
         <h1 class="text-center mt-4">Inscription</h1>
 
+        <div id="boxError"></div>
+
         <form action="/proc/sign_in" id="form_sign_in" method="POST">
             <div class="form-group">
                 <label for="login">login</label>
@@ -21,6 +23,11 @@
             <button type="submit" id="sub_sign_in" name="sub_sign_in" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    {{ test.login }}
 
 {% endblock %}
+
+    {% block javascript %}
+
+    {% endblock %}
+
+
