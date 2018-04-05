@@ -35,24 +35,23 @@ $('#form_sign_in').submit(function(e){
 $('#boxErrorNav').hide();
 $('#boxSuccessNav').hide();
 $(' #form_connexion').submit(function(e){
-    $('#boxError').html();
+    $('#boxErrorNav').html();
     e.preventDefault();
     var $this = $(this);
     var url = $this.attr("action");
-    /* $.post(url,$this.serialize()).done(function(data){
-         $('#boxError').html(data);
-         alert(data.data.error);
-     }, "json");*/
+
     $.post(url,$this.serialize(), function(data){
         if(data.error != null){
             $('#boxErrorNav').html(data.error);
             $('#boxErrorNav').show();
         }
         else {
+
             $('#boxSuccessNav').html(data.success);
             $('#boxErrorNav').hide();
             $('#boxSuccessNav').show();
             $('#form_connexion').hide();
+
         }
         //alert(data.data.error);
     }, "json");

@@ -14,7 +14,7 @@ namespace Model;
  */
 class UserManager extends AbstractManager
 {
-    const TABLE = 'item';
+    const TABLE = 'user';
 
     /**
      *  Initializes this class.
@@ -54,9 +54,11 @@ class UserManager extends AbstractManager
     {
         $password = md5($password); //on le crypte pour la comparaison
 
-        $sql = 'SELECT id,name,COUNT(id) as nb FROM user WHERE name=:userName AND password=:password';
+        $sql = 'SELECT id,name FROM user WHERE name=:userName AND password=:password';
+        //$sql = 'SELECT * FROM user WHERE name=:userName AND password=:password';
         $statement = $this->pdoConnection->prepare($sql);
-        $statement->setFetchMode(\PDO::FETCH_CLASS, $this->className);
+        //$statement->setFetchMode(\PDO::FETCH_CLASS, $this->className);
+        $statement->setFetchMode(\PDO::FETCH_ASSOC);
         $statement->bindValue(':password', $password);
         $statement->bindValue(':userName', $userName);
         $statement->execute();

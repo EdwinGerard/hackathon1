@@ -72,17 +72,31 @@ class ProcController extends AbstractController
             if (isset($_POST['login']) && isset($_POST['pwd'])) {
                 $userManager = new userManager();
                 $user = $userManager->checkConnexion($_POST['login'],$_POST['pwd']);
-                if($user->nb == 0){
+
+                if(empty($user['id'])){
                     throw new \Exception('Erreur de login ou de mot de passe');
                 }
-                print_r($user);
+
+            }
+            else {
+                throw new \Exception('erreur de récupération des données.');
             }
         }
         catch(\Exception $e)
         {
-           echo $e->getMessage();
-           exit();
+            $data['error'] = $e->getMessage();
+            echo json_encode($data);
+            exit();
         }
+        $data['success']='Connection réussi.';
+        $data['user']=$user;
+        echo json_encode($data);
+
+        // ouverture de la session
+        session_start();
+        $_SESSION['user']['id']=$user['id'];
+        $_SESSION['user']['name']=$user['id'];
+
     }
 
     public function edit(int $id)
