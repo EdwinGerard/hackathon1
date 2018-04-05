@@ -95,8 +95,16 @@ class ProcController extends AbstractController
         // ouverture de la session
         session_start();
         $_SESSION['user']['id']=$user['id'];
-        $_SESSION['user']['name']=$user['id'];
+        $_SESSION['user']['name']=$user['name'];
 
+    }
+
+    public function deconnect()
+    {
+        session_start();
+        session_destroy();
+        header('Location: /');
+        exit();
     }
 
     public function edit(int $id)

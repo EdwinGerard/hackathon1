@@ -52,6 +52,7 @@ $(' #form_connexion').submit(function(e){
             $('#boxSuccessNav').show();
             $('#form_connexion').hide();
 
+
         }
         //alert(data.data.error);
     }, "json");
