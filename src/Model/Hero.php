@@ -119,76 +119,112 @@ class Hero
         $this->isDefense = $isDefense;
     }
 
+    /**
+     * @param Hero $hero
+     * @throws \Exception
+     */
     public function fightMelee(Hero $hero)
     {
         $heroPv = $hero->getStats()->getPv();
         $heroPa = $hero->getStats()->getPa();
         $heroRes = $hero->getStats()->getResistance();
+        $heroPosX = $hero->getPosition()->getPositionX();
+        $heroPosY = $hero->getPosition()->getPositionY();
+        $thisPosX = $this->getPosition()->getPositionX();
+        $thisPosY = $this->getPosition()->getPositionY();
 
-        if ($heroPa >= 1) {
-            if ($hero->isDefense() == true) {
-                $hero->getStats()->setResistance($heroRes * 2);
-                if ($heroRes >= $this->getStats()->getMelee()) {
-                    $hero->getStats()->setPv($heroPv);
-                    $hero->getStats()->setPa($heroPa - 1);
+        if (($thisPosX - $heroPosX) == 1 OR ($thisPosY - $heroPosY) == 1) {
+            if ($heroPa >= 1) {
+                if ($hero->isDefense() == true) {
+                    $hero->getStats()->setResistance($heroRes * 2);
+                    if ($heroRes >= $this->getStats()->getMelee()) {
+                        $hero->getStats()->setPv($heroPv);
+                        $hero->getStats()->setPa($heroPa - 1);
+                    } else {
+                        $hero->getStats()->setPv($heroPv - ($this->getStats()->getMelee() * 0.1 - $heroRes * 0.1));
+                        $hero->getStats()->setPa($heroPa - 1);
+                    }
                 } else {
-                    $hero->getStats()->setPv($heroPv - ($this->getStats()->getMelee() * 0.1 - $heroRes * 0.1));
-                    $hero->getStats()->setPa($heroPa - 1);
+                    if ($hero->getStats()->getResistance() >= $this->getStats()->getMelee()) {
+                        $hero->getStats()->setPv($heroPv);
+                        $hero->getStats()->setPa($heroPa - 1);
+                    } else {
+                        $hero->getStats()->setPv($heroPv - ($this->getStats()->getMelee() * 0.1 - $heroRes * 0.1));
+                        $hero->getStats()->setPa($heroPa - 1);
+                    }
                 }
             } else {
-                if ($hero->getStats()->getResistance() >= $this->getStats()->getMelee()) {
-                    $hero->getStats()->setPv($heroPv);
-                    $hero->getStats()->setPa($heroPa - 1);
-                } else {
-                    $hero->getStats()->setPv($heroPv - ($this->getStats()->getMelee() * 0.1 - $heroRes * 0.1));
-                    $hero->getStats()->setPa($heroPa - 1);
-                }
+                throw new \Exception('Pas assez de PA');
             }
         }else{
-            return 'Pas assez de PA';
+            throw new \Exception('Pas assez près!!');
         }
     }
 
+    /**
+     * @param Hero $hero
+     * @throws \Exception
+     */
     public function fightDistant(Hero $hero)
     {
         $heroPv = $hero->getStats()->getPv();
         $heroPa = $hero->getStats()->getPa();
         $heroRes = $hero->getStats()->getResistance();
+        $heroPosX = $hero->getPosition()->getPositionX();
+        $heroPosY = $hero->getPosition()->getPositionY();
+        $thisPosX = $this->getPosition()->getPositionX();
+        $thisPosY = $this->getPosition()->getPositionY();
 
-        if ($heroPa >= 2) {
-            if ($hero->isDefense() == true) {
-                $hero->getStats()->setResistance($heroRes * 2);
-                if ($heroRes >= $this->getStats()->getDistant()) {
-                    $hero->getStats()->setPv($heroPv);
-                    $hero->getStats()->setPa($heroPa - 2);
+        if (($thisPosX - $heroPosX) == 3 OR ($thisPosY - $heroPosY) == 3) {
+            if ($heroPa >= 2) {
+                if ($hero->isDefense() == true) {
+                    $hero->getStats()->setResistance($heroRes * 2);
+                    if ($heroRes >= $this->getStats()->getDistant()) {
+                        $hero->getStats()->setPv($heroPv);
+                        $hero->getStats()->setPa($heroPa - 2);
+                    } else {
+                        $hero->getStats()->setPv($heroPv - ($this->getStats()->getDistant() * 0.1 - $heroRes * 0.1));
+                        $hero->getStats()->setPa($heroPa - 2);
+                    }
                 } else {
-                    $hero->getStats()->setPv($heroPv - ($this->getStats()->getDistant() * 0.1 - $heroRes * 0.1));
-                    $hero->getStats()->setPa($heroPa - 2);
+                    if ($heroRes >= $this->getStats()->getDistant()) {
+                        $hero->getStats()->setPv($heroPv);
+                        $hero->getStats()->setPa($heroPa - 2);
+                    } else {
+                        $hero->getStats()->setPv($heroPv - ($this->getStats()->getDistant() * 0.1 - $heroRes * 0.1));
+                        $hero->getStats()->setPa($heroPa - 2);
+                    }
                 }
             } else {
-                if ($heroRes >= $this->getStats()->getDistant()) {
-                    $hero->getStats()->setPv($heroPv);
-                    $hero->getStats()->setPa($heroPa - 2);
-                } else {
-                    $hero->getStats()->setPv($heroPv - ($this->getStats()->getDistant() * 0.1 - $heroRes * 0.1));
-                    $hero->getStats()->setPa($heroPa - 2);
-                }
+                throw new \Exception('Pas assez de PA');
             }
         }else{
-            return 'Pas assez de PA';
+            throw new \Exception('Pas assez près!!');
         }
     }
 
+    /**
+     * @param Hero $hero
+     * @throws \Exception
+     */
     public function fightSpecial(Hero $hero)
     {
         $heroPv = $hero->getStats()->getPv();
         $heroPa = $hero->getStats()->getPa();
+        $heroPosX = $hero->getPosition()->getPositionX();
+        $heroPosY = $hero->getPosition()->getPositionY();
+        $thisPosX = $this->getPosition()->getPositionX();
+        $thisPosY = $this->getPosition()->getPositionY();
 
-        if ($heroPa >= 4) {
-            $hero->getStats()->setPv($heroPv - ($this->getStats()->getSpell() * 0.1));
-            $hero->getStats()->setPa($heroPa - 4);
+        if (($thisPosX - $heroPosX) == 4 OR ($thisPosY - $heroPosY) == 4) {
+            if ($heroPa >= 4) {
+                $hero->getStats()->setPv($heroPv - ($this->getStats()->getSpell() * 0.1));
+                $hero->getStats()->setPa($heroPa - 4);
+            } else {
+                throw new \Exception('Pas assez de PA');
+            }
         }else{
-            return 'Pas assez de PA';
+            throw new \Exception('Pas assez près!!');
         }
     }
 

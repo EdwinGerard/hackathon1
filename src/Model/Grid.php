@@ -13,6 +13,12 @@ use Model\Stats;
 
 class Grid
 {
+    /**
+     * @param \Model\Hero $hero
+     * @param Position $position
+     * @param int $nbPa
+     * @throws \Exception
+     */
     public function move(Hero $hero, Position $position, int $nbPa)
     {
         $heroPa = $hero->getStats()->getPa();
@@ -23,7 +29,7 @@ class Grid
             $hero->setPosition($position);
             $hero->getStats()->setPa(($heroPa - $nbPa));
         }else{
-            return 'Pas assez de PA';
+            throw new \Exception('Pas assez de PA');
         }
 
     }
