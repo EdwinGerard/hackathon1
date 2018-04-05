@@ -26,11 +26,15 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-       /* $itemManager = new ItemManager();
-        $items = $itemManager->selectAll();*/
+
 
        /* return $this->twig->render('Item/index.html.twig', ['items' => $items]);*/
         return $this->twig->render('Home/index.html.twig');
+    }
+
+    public function signIn()
+    {
+        return $this->twig->render('Home/signin.html.twig');
     }
 
     /**

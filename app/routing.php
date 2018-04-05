@@ -18,5 +18,11 @@ $routes = [
      ],*/
     'Home' => [
         ['index', '/', 'GET'], // action, url, method
+        ['signIn','/sign_in','GET'],
     ],
+
+    'Proc' => [
+        ['signIn','/proc/sign_in',['GET', 'POST']],
+    ],
+
 ];

@@ -1,0 +1,47 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center mt-4">Inscription</h1>
+
+        <div id="boxError"></div>
+
+        <form action="/proc/sign_in" id="form_sign_in" method="POST">
+            <div class="form-group">
+                <label for="login">login</label>
+                <input type="text" class="form-control" id="login" name="login">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" name="pwd1">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password again:</label>
+                <input type="password" class="form-control" id="pwd2" name="pwd2">
+            </div>
+
+            <button type="submit" id="sub_sign_in" name="sub_sign_in" class="btn btn-primary">Confirmer</button>
+        </form>
+    </div>
+
+{% endblock %}
+
+    {% block javascript %}
+    <script>
+    // language=JQuery-CSS
+    $('#form_sign_in').submit(function(e){
+        $('#boxError').html();
+        e.preventDefault();
+        var $this = $(this);
+        var url = $this.attr("action");
+
+        $.post(url,$this.serialize() ).done(function(data){
+            $('#boxError').html(data);
+        });
+    });
+
+
+    </script>
+    {% endblock %}
+
+
