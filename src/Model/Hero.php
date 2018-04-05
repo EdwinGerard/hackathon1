@@ -9,6 +9,7 @@
 namespace Model;
 
 use Model\Stats;
+use Model\Position;
 
 
 class Hero
@@ -19,7 +20,7 @@ class Hero
     private $id;
 
     /**
-     * @var int
+     * @var position
      */
     private $position;
 
@@ -57,7 +58,7 @@ class Hero
     /**
      * @return int
      */
-    public function getPosition(): int
+    public function getPosition(): Position
     {
         return $this->position;
     }
@@ -65,7 +66,7 @@ class Hero
     /**
      * @param int $position
      */
-    public function setPosition(int $position): void
+    public function setPosition(Position $position): void
     {
         $this->position = $position;
     }
@@ -121,34 +122,74 @@ class Hero
     public function fightMelee(Hero $hero)
     {
         $heroPv = $hero->getStats()->getPv();
-        if ($hero->isDefense() == true){
-            $hero->getStats()->setResistance($hero->getStats()->getResistance() * 2);
-            if ($hero->getStats()->getResistance() >= $this->getStats()->getMelee()) {
-                $hero->getStats()->setPv($heroPv);
-            }else{
-                $hero->getStats()->setPv($heroPv - ($this->getStats()->getMelee() * 0.1 - $hero->getStats()->getResistance() * 0.1));
+        $heroPa = $hero->getStats()->getPa();
+        $heroRes = $hero->getStats()->getResistance();
+
+        if ($heroPa >= 1) {
+            if ($hero->isDefense() == true) {
+                $hero->getStats()->setResistance($heroRes * 2);
+                if ($heroRes >= $this->getStats()->getMelee()) {
+                    $hero->getStats()->setPv($heroPv);
+                    $hero->getStats()->setPa($heroPa - 1);
+                } else {
+                    $hero->getStats()->setPv($heroPv - ($this->getStats()->getMelee() * 0.1 - $heroRes * 0.1));
+                    $hero->getStats()->setPa($heroPa - 1);
+                }
+            } else {
+                if ($hero->getStats()->getResistance() >= $this->getStats()->getMelee()) {
+                    $hero->getStats()->setPv($heroPv);
+                    $hero->getStats()->setPa($heroPa - 1);
+                } else {
+                    $hero->getStats()->setPv($heroPv - ($this->getStats()->getMelee() * 0.1 - $heroRes * 0.1));
+                    $hero->getStats()->setPa($heroPa - 1);
+                }
             }
+        }else{
+            return 'Pas assez de PA';
         }
     }
 
     public function fightDistant(Hero $hero)
     {
         $heroPv = $hero->getStats()->getPv();
-        if ($hero->isDefense() == true){
-            $hero->getStats()->setResistance($hero->getStats()->getResistance() * 2);
-            if ($hero->getStats()->getResistance() >= $this->getStats()->getDistant()) {
-                $hero->getStats()->setPv($heroPv);
-            }else{
-                $hero->getStats()->setPv($heroPv - ($this->getStats()->getDistant() * 0.1 - $hero->getStats()->getResistance() * 0.1));
+        $heroPa = $hero->getStats()->getPa();
+        $heroRes = $hero->getStats()->getResistance();
+
+        if ($heroPa >= 2) {
+            if ($hero->isDefense() == true) {
+                $hero->getStats()->setResistance($heroRes * 2);
+                if ($heroRes >= $this->getStats()->getDistant()) {
+                    $hero->getStats()->setPv($heroPv);
+                    $hero->getStats()->setPa($heroPa - 2);
+                } else {
+                    $hero->getStats()->setPv($heroPv - ($this->getStats()->getDistant() * 0.1 - $heroRes * 0.1));
+                    $hero->getStats()->setPa($heroPa - 2);
+                }
+            } else {
+                if ($heroRes >= $this->getStats()->getDistant()) {
+                    $hero->getStats()->setPv($heroPv);
+                    $hero->getStats()->setPa($heroPa - 2);
+                } else {
+                    $hero->getStats()->setPv($heroPv - ($this->getStats()->getDistant() * 0.1 - $heroRes * 0.1));
+                    $hero->getStats()->setPa($heroPa - 2);
+                }
             }
+        }else{
+            return 'Pas assez de PA';
         }
     }
 
     public function fightSpecial(Hero $hero)
     {
         $heroPv = $hero->getStats()->getPv();
+        $heroPa = $hero->getStats()->getPa();
 
-        $hero->getStats()->setPv($heroPv - ($this->getStats()->getSpell() * 0.1) );
+        if ($heroPa >= 4) {
+            $hero->getStats()->setPv($heroPv - ($this->getStats()->getSpell() * 0.1));
+            $hero->getStats()->setPa($heroPa - 4);
+        }else{
+            return 'Pas assez de PA';
+        }
     }
 
 }
