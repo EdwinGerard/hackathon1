@@ -13,6 +13,9 @@
 </head>
 
 <body>
+{% block header %}
+    {% include 'nav.html.twig' %}
+{% endblock %}
 {% block content %}{% endblock %}
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
