@@ -1,0 +1,73 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center mt-4">Inscription</h1>
+
+        <div id="boxError" class="alert alert-danger text-center"></div>
+
+
+        <form action="/proc/sign_in" id="form_sign_in" method="POST">
+            <div class="form-group">
+                <label for="login">login</label>
+                <input type="text" class="form-control" id="login" name="login">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" name="pwd1">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password again:</label>
+                <input type="password" class="form-control" id="pwd2" name="pwd2">
+            </div>
+
+            <button type="submit" id="sub_sign_in" name="sub_sign_in" class="btn btn-primary">Confirmer</button>
+        </form>
+
+        <div id="boxSuccess" class="alert alert-success text-center"></div>
+
+        <div class="m-5 text-center">
+            <a href="/" class="btn btn-primary ">Retour vers l'accueil</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+    {% block javascript %}
+    <script>
+    // language=JQuery-CSS
+
+    $('#boxError').hide();
+    $('#boxSuccess').hide();
+
+    $('#form_sign_in').submit(function(e){
+        $('#boxError').html();
+        e.preventDefault();
+        var $this = $(this);
+        var url = $this.attr("action");
+
+       /* $.post(url,$this.serialize()).done(function(data){
+            $('#boxError').html(data);
+            alert(data.data.error);
+        }, "json");*/
+        $.post(url,$this.serialize(), function(data){
+            if(data.error != null){
+                $('#boxError').html(data.error);
+                $('#boxError').show();
+            }
+            else {
+                $('#boxSuccess').html(data.success);
+                $('#boxError').hide();
+                $('#boxSuccess').show();
+                $('#form_sign_in').hide();
+            }
+            //alert(data.data.error);
+        }, "json");
+
+    });
+
+
+    </script>
+    {% endblock %}
+
+
