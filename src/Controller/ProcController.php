@@ -12,7 +12,6 @@ namespace Controller;
 use Model\User;
 use Model\UserManager;
 
-use Model\ProcManager;
 
 /**
  * Class ItemController
@@ -66,6 +65,25 @@ class ProcController extends AbstractController
         //return $this->twig->render('Home/signin.html.twig',['test',$post]);
     }
 
+    public function connexion(){
+        try
+        {
+            //var_dump($_POST);
+            if (isset($_POST['login']) && isset($_POST['pwd'])) {
+                $userManager = new userManager();
+                $user = $userManager->checkConnexion($_POST['login'],$_POST['pwd']);
+                if($user->nb == 0){
+                    throw new \Exception('Erreur de login ou de mot de passe');
+                }
+                print_r($user);
+            }
+        }
+        catch(\Exception $e)
+        {
+           echo $e->getMessage();
+           exit();
+        }
+    }
 
     public function edit(int $id)
     {

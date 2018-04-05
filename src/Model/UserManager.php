@@ -49,4 +49,18 @@ class UserManager extends AbstractManager
             return true;
         }
     }
+
+    public function checkConnexion(string $userName,string $password)
+    {
+        $password = md5($password); //on le crypte pour la comparaison
+
+        $sql = 'SELECT id,name,COUNT(id) as nb FROM user WHERE name=:userName AND password=:password';
+        $statement = $this->pdoConnection->prepare($sql);
+        $statement->setFetchMode(\PDO::FETCH_CLASS, $this->className);
+        $statement->bindValue(':password', $password);
+        $statement->bindValue(':userName', $userName);
+        $statement->execute();
+        return $statement->fetch();
+
+    }
 }

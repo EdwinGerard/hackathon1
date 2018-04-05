@@ -11,7 +11,7 @@
 
         {% if auth is empty %}
 
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#connexionModal">
                    Connexion
                 </button>
 
@@ -25,7 +25,7 @@
 
 
 <!-- The Modal -->
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="connexionModal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
@@ -37,18 +37,20 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form action="/action_page" method="post">
+                <div id="boxError1" class="alert alert-danger text-center"></div>
+                <form action="/proc/connexion" method="POST" id="form_connexion">
                     <div class="form-group">
                         <label for="login">Login:</label>
-                        <input type="text" class="form-control" id="login">
+                        <input type="text" class="form-control" id="login" name="login">
                     </div>
                     <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd">
+                        <input type="password" class="form-control" id="pwd" name="pwd">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+                <div id="boxSuccess1" class="alert alert-success text-center"></div>
             </div>
 
             <!-- Modal footer -->
@@ -61,6 +63,33 @@
         </div>
     </div>
 </div>
-{% block javascript %}
 
-{% endblock %}
+<script>
+
+    $('#boxError1').hide();
+    $('#boxSuccess1').hide();
+
+    $('#form_connexion').submit(function(e){
+        $('#boxError').html();
+        e.preventDefault();
+        var $this = $(this);
+        var url = $this.attr("action");
+
+        $.post(url,$this.serialize(), function(data){
+            if(data.error != null){
+                $('#boxError1').html(data.error);
+                $('#boxError1').show();
+            }
+            else {
+                $('#boxSuccess1').html(data.success);
+                $('#boxError1').hide();
+                $('#boxSuccess1').show();
+                $('#form_connexion').hide();
+            }
+            //alert(data.data.error);
+        }, "json");
+
+    });
+
+
+</script>
