@@ -28,13 +28,13 @@
                 <td>
                     {% if game.player2 is empty %}
                         {% if user.id != game.playerId1 %}
-                    <button class="join-game btn btn-primary" data-gameId="{{ game.id }}">Rejoindre</button>
-                            {% else %}
-                                En attente d'un joueur
-                            {% endif %}
+                            <button class="join-game btn btn-primary" data-gameId="{{ game.id }}">Rejoindre</button>
+                        {% else %}
+                            En attente d'un joueur
+                        {% endif %}
                     {% else %}
                     {{ game.player2 }}
-                        {% endif %}
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}

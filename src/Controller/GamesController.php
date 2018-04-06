@@ -39,9 +39,45 @@ class GamesController extends AbstractController
             $gameManager-> addPlayerAtGame($gameId,$player2);
         }
         catch (\Exception $e){
-            echo $e->getMessage();
+            $data['error'] = $e->getMessage();
+            echo json_encode($data);
             exit();
         }
+
+    }
+
+    public function myGame()
+    {
+        try{
+            session_start();
+
+            if(empty($_GET['id'])){
+                throw new \Exception('erreur de récupération du id de la partie.');
+            }
+
+
+            $gameId = $_GET['id'];
+
+            $gameManager = new GameManager();
+            $gameStep = $gameManager->getGameStep($gameId);
+
+            if(empty($gameStep)){
+                $gameManager->addGameStep($gameId);
+                $gameStep = $gameManager->getGameStep($gameId);
+            }
+
+            if ($gameStep['step'] == 1){ // on charge l'initialisation de la partie
+                return $this->twig->render('Games/army.html.twig',['user' => $this->session()]);
+            }
+
+        }
+        catch (\Exception $e){
+           /* $data['error'] = $e->getMessage();
+            echo json_encode($data);*/
+           echo $e->getMessage();
+            exit();
+        }
+
     }
     public function addGame()
     {

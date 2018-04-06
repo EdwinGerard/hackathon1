@@ -30,7 +30,7 @@ class GameManager extends AbstractManager
     {
         // prepared request
         $sql="SELECT g.id,g.name,u1.name as player1,u1.id as playerId1 , u2.name as player2,u2.id as playerId2  
-                FROM wildfighter.game as g
+                FROM game as g
                 JOIN user as u1 ON player_id1 = u1.id
                 LEFT JOIN user as u2 ON player_id2 = u2.id
                 WHERE player_id1=:playerId OR player_id2=:playerId OR player_id2 IS NULL";
@@ -62,5 +62,26 @@ class GameManager extends AbstractManager
     $prep->bindValue(':game', $gameName);
     $prep->bindValue(':id', $player1);
     $prep->execute();
+
+    public function getGameStep($gameId)
+    {
+        $sql="SELECT * FROM gameStep 
+                WHERE game_id=:gameId";
+
+        $statement = $this->pdoConnection->prepare($sql);
+        $statement->setFetchMode(\PDO::FETCH_ASSOC);
+        $statement->bindValue(':gameId', $gameId, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
+
+    public function addGameStep($gameId)
+    {
+        $sql="INSERT INTO gameStep (step,game_id) VALUES ('1',:gameId)";
+        $statement = $this->pdoConnection->prepare($sql);
+        $statement->setFetchMode(\PDO::FETCH_ASSOC);
+        $statement->bindValue(':gameId', $gameId );
+        $statement->execute();
     }
 }
