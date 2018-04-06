@@ -23,7 +23,11 @@ $routes = [
     ],
 
     'Games' => [
-        ['games', '/games', 'GET'], // action, url, method
+        ['games', '/games',['GET', 'POST']], // action, url, method
+    ],
+
+    'Army' => [
+        ['army', '/army',['GET', 'POST']], // action, url, method
     ],
 
     'Proc' => [
