@@ -10,10 +10,32 @@
  */
 
 $routes = [
-    'Item' => [ // Controller
+    /*'Item' => [ // Controller
+         ['index', '/', 'GET'], // action, url, method
+         ['add', '/item/add', 'GET'], // action, url, method
+         ['edit', '/item/edit/{id:\d+}', 'GET'], // action, url, method
+         ['show', '/item/{id:\d+}', 'GET'], // action, url, method
+     ],*/
+    'Home' => [
         ['index', '/', 'GET'], // action, url, method
-        ['add', '/item/add', 'GET'], // action, url, method
-        ['edit', '/item/edit/{id:\d+}', 'GET'], // action, url, method
-        ['show', '/item/{id:\d+}', 'GET'], // action, url, method
+        ['signIn','/sign_in','GET'],
     ],
+
+    'Games' => [
+        ['games', '/games',['GET', 'POST']], // action, url, method
+        ['joinGame','/proc/join_game',['GET', 'POST']],
+        ['myGame','/myGame',['GET', 'POST']],
+
+    ],
+
+    'Army' => [
+        ['army', '/army',['GET', 'POST']], // action, url, method
+    ],
+
+    'Proc' => [
+        ['signIn','/proc/sign_in',['GET', 'POST']],
+        ['connexion','/proc/connexion',['GET', 'POST']],
+        ['deconnect','/proc/deconnect',['GET', 'POST']],
+    ],
+
 ];

@@ -24,6 +24,8 @@ abstract class AbstractController
      */
     public function __construct()
     {
+
+
         $loader = new Twig_Loader_Filesystem(APP_VIEW_PATH);
         $this->twig = new Twig_Environment(
             $loader,
@@ -33,5 +35,17 @@ abstract class AbstractController
             ]
         );
         $this->twig->addExtension(new \Twig_Extension_Debug());
+    }
+
+    public function session()
+    {
+
+        $user=null;
+        if (isset($_SESSION['user'])){
+            $user = $_SESSION['user'];
+
+            return $user;
+        }
+
     }
 }
