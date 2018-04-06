@@ -10,8 +10,6 @@
 
 #gameGrid td{
     border : 1px solid black;
-    /*width : calc(100vw / 10);*/
-   /* height : calc(100vw / 10);*/
     width: 90px;        /* dimensions des cellules de la grille*/
 
 }
@@ -23,4 +21,44 @@
 .username{
     color: white;
     font-size: 18px;
+}
+
+
+.card p{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card img{
+    width: 20vw;
+    height: 50vh;
+}
+
+.card-title{
+    text-align: center;
+    color: white;
+}
+.card {
+    width: 20vw;
+    background-color: transparent;
+    border: transparent;
+}
+
+h1{
+    text-align: center;
+    color: white;
+}
+
+body {
+    background-image: url('/assets/images/bgfight.jpg');
+    background-size: 100vw 70vw;
+    background-repeat: no-repeat;
+}
+.thumb{
+    width:88px;
+    height:88px;
+    display:block;
+
 }
