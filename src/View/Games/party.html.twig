@@ -2,7 +2,8 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
+    <h2 class="text-center">tour : {{ turn.turn }}</h2>
+    <div><p>Au tour de {{ turn.hero_id }}</p></div>
     {% include 'Games/grid.html.twig' %}
 
 {% endblock %}
@@ -11,7 +12,7 @@
 
 {% block javascript %}
 <script>
-$("table").click(function(){
+
     $.post("/hero", function(data, status) {
         //alert('test');
         //alert("Data: " + data + "\nStatus: " + status);
@@ -30,7 +31,13 @@ $("table").click(function(){
     });
 
 
-});
+    $('td.canWalk').click(function(){
+       alert('youou');
+    });
+
+
+
+
 </script>
 
 {% endblock %}
