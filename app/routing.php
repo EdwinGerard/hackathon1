@@ -38,4 +38,8 @@ $routes = [
         ['deconnect','/proc/deconnect',['GET', 'POST']],
     ],
 
+    'Hero' => [
+        ['afficheHero','/hero','GET'],
+    ],
+
 ];
