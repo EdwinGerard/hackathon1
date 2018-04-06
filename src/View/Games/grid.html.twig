@@ -7,16 +7,10 @@
          <tr>
 
         {% for j in 1 .. numberColumn %}
-             <td data-coord="['{{ j }}','{{ i }}']" ></td>
+             <td data-coord="['{{ j }}','{{ i }}']" data-id="{{ idCell }}" data-hero="{% for hero in tab %}{% if hero.posId == idCell %}{{ hero.heroId }}{% endif %}{% endfor %}"></td>
             {% set idCell = idCell+1 %}
         {% endfor %}
 
          </tr>
     {% endfor %}
 </table>
-
-<script>
-    $.post('/hero',function(data){
-        alert(data);
-    },'json');
-</script>

@@ -1,6 +1,22 @@
 
+.card-checkbox {
+    cursor: pointer;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 4px solid transparent;
+    margin-bottom: 0;
+    outline: 0;
+}
+.card-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.card-checkbox-checked {
+    border-color: white;
+}
+
 #gameGrid{
-    /*width:100%;*/
     text-align:center;
     margin:10px auto;
          /* dimensions des cellules de la grille*/
@@ -10,8 +26,6 @@
 
 #gameGrid td{
     border : 1px solid black;
-    /*width : calc(100vw / 10);*/
-   /* height : calc(100vw / 10);*/
     width: 90px;        /* dimensions des cellules de la grille*/
 
 }
@@ -24,6 +38,7 @@
     color: white;
     font-size: 18px;
 }
+
 
 .card p{
     color: white;
@@ -56,4 +71,10 @@ body {
     background-image: url('/assets/images/bgfight.jpg');
     background-size: 100vw 70vw;
     background-repeat: no-repeat;
+}
+.thumb{
+    width:88px;
+    height:88px;
+    display:block;
+
 }
