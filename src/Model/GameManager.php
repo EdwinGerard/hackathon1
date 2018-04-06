@@ -57,11 +57,12 @@ class GameManager extends AbstractManager
 
     public function addGame(string $gameName, $player1)
     {
-    $sql = 'INSERT INTO game (name, player_id1) VALUES (:game, :id)';
-    $prep = $this->pdoConnection->prepare($sql);
-    $prep->bindValue(':game', $gameName);
-    $prep->bindValue(':id', $player1);
-    $prep->execute();
+        $sql = 'INSERT INTO game (name, player_id1) VALUES (:game, :id)';
+        $prep = $this->pdoConnection->prepare($sql);
+        $prep->bindValue(':game', $gameName);
+        $prep->bindValue(':id', $player1);
+        $prep->execute();
+    }
 
     public function getGameStep($gameId)
     {
