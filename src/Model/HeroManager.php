@@ -37,28 +37,28 @@ class HeroManager extends AbstractManager
             $response = $client->request('GET', $i . '.json');
             $body = $response->getBody();
             $json = $body->getContents();
-            $heros[] = json_decode($json,true);
+            $herosTab[] = json_decode($json,true);
         }
-        $heros = json_encode($heros);
+
         for($i = 0; $i < 4; $i++){
-            $heroJson = json_decode($heros)[$i];
+            $heroJson = $herosTab[$i];
             $hero = new Hero();
-            $hero->setId($heroJson->id);
-            $hero->setName($heroJson->name);
+            $hero->setId($heroJson['id']);
+            $hero->setName($heroJson['name']);
             $stats = new Stats();
             $stats->setPa(10);
-            $stats->setPv($heroJson->powerstats->durability);
-            $stats->setResistance($heroJson->powerstats->strength);
-            $stats->setMelee($heroJson->powerstats->combat);
-            $stats->setDistant($heroJson->powerstats->combat);
-            $stats->setSpell($heroJson->powerstats->power);
+            $stats->setPv($heroJson['powerstats']['durability']);
+            $stats->setResistance($heroJson['powerstats']['strength']);
+            $stats->setMelee($heroJson['powerstats']['combat']);
+            $stats->setDistant($heroJson['powerstats']['combat']);
+            $stats->setSpell($heroJson['powerstats']['power']);
             $hero->setStats($stats);
             $position = new Position();
             $position->setPositionX($i+1);
             $position->setPositionY($i+1);
             $hero->setPosition($position);
 
-            var_dump($hero);
+            $heros[] = $hero;
 
         }
         return $heros;

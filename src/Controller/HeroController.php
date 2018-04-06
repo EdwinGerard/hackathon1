@@ -24,6 +24,8 @@ class HeroController extends AbstractController
     {
         $heroManager = new HeroManager();
         $heros = $heroManager->getHeroFromApi();
+
+        var_dump($heros);
     }
 
 }
