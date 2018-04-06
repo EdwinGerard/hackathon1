@@ -119,6 +119,6 @@ class GamesController extends AbstractController
             exit();
         }
         header('Location: /games');
-        exit;;
+        exit;
     }
 }
