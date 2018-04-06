@@ -83,9 +83,10 @@ class GamesController extends AbstractController
                 ];*/
                 $heroManager = new HeroManager();
                 $positionHeros = $heroManager->getPositionHeros($gameId);
+                $heroId = $heroManager->getHeroIdFromApi();
                 if (empty($positionHeros)){
-                    $heroManager->addPositionHero();
-                    $positionHeros = $heroManager->getPositionHeros();
+                    $heroManager->addPositionHero($gameId, $heroId);
+                    $positionHeros = $heroManager->getPositionHeros($gameId);
                 }
 
 
