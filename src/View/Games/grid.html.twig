@@ -1,16 +1,15 @@
-{% set numberColumn = 15 %}     {#définir ici en dur le nombre de colonnes #}
-{% set numberLine = 10 %}     {#définir ici en dur le nombre de lignes #}
+{% set numberColumn = 17 %}     {# définir ici en dur le nombre de colonnes #}
+{% set numberLine = 8 %}     {# définir ici en dur le nombre de lignes #}
 {% set idCell = 1 %}            {# l'ID de chaque cellule   // JE COMMENCE À 1 ET NON PAS 0 !! #}
 
-
-<table>
-    {% for i in 1..{{ numberLine }} %}
+<table id="gameGrid">
+    {% for i in 1 .. numberLine  %}
          <tr>
 
-        {% for j in 1..{{ numberColumn }} %}
-             <td data-coord="['{{ j }}','{{ i }}']" title="Id cellule = {{ idCell }}. Coordonnées X={{ j }} Y={{ i }}" class="{{ idCell }}"></td>
+        {% for j in 1 .. numberColumn %}
+             <td data-coord="['{{ j }}','{{ i }}']" ></td>
             {% set idCell = idCell+1 %}
-            {% endfor %}
+        {% endfor %}
 
          </tr>
     {% endfor %}
