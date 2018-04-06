@@ -9,6 +9,8 @@ namespace Controller;
 
 use Model\Game;
 use Model\GameManager;
+use Model\HeroManager;
+use Model\TurnManager;
 
 class GamesController extends AbstractController
 {
@@ -72,6 +74,18 @@ class GamesController extends AbstractController
 
             if ($gameStep['step'] == 2){ // on charge la partie
 
+                // récup du tour
+                $turnManager = new turnManager();
+                $turn = $turnManager->getTurn($gameId);
+                if(empty($turn)){
+                    // ----- TODO > mettre la methode pour selection du héros le plus rapide de la game
+                    $heroId=1;
+                    $turnManager->addTurn($gameId,$heroId);
+                    $turn = $turnManager->getTurn($gameId);
+                }
+
+
+
                 // --------- TODO -> CHOPPER TOUTES LES INFOS DE LA PARTY AVANT ----
                 $positionHeros = [
                     0 => ['heroId' => 0, 'posId' => 5],
@@ -88,7 +102,7 @@ class GamesController extends AbstractController
                 }*/
 
 
-                return $this->twig->render('Games/party.html.twig',['user' => $this->session(), 'tab'=> $positionHeros]);
+                return $this->twig->render('Games/party.html.twig',['user' => $this->session(), 'tab'=> $positionHeros, 'turn'=>$turn]);
             }
 
         }
