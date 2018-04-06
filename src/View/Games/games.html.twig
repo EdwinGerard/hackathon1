@@ -13,7 +13,7 @@
 <div class="container">
     <section>
 
-        <table class="table table-dark table-hover">
+        <table class="table table-dark table-hover" id="list-game">
             <thead>
             <tr>
                 <th>Nom de la partie</th>
@@ -23,10 +23,16 @@
             </thead>
             <tbody>
             {% for game in games %}
-            <tr>
+            <tr data-id="{{ game.id }}" data-player2="{{ game.playerId2 }}" class="tr-game">
                 <td>{{ game.name }}</td>
                 <td>{{ game.player1 }}</td>
-                <td>{{ game.player2 }}</td>
+                <td>
+                    {% if game.player2 is empty %}
+                    <button class="join-game btn btn-primary" data-gameId="{{ game.id }}">Rejoindre</button>
+                    {% else %}
+                    {{ game.player2 }}
+                        {% endif %}
+                </td>
             </tr>
             {% endfor %}
             </tbody>

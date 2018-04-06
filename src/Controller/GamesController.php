@@ -29,5 +29,24 @@ class GamesController extends AbstractController
         return $this->twig->render('Games/games.html.twig',['games' => $games ,'user' => $this->session()]);
     }
 
+    public function joinGame()
+    {
+        try{
+            session_start();
+            if(empty($_POST['gameId'])){
+                throw new \Exception('erreur de récupération du id de la partie.');
+            }
+
+            $player2 = $_SESSION['user']['id'];
+            $gameId = $_POST['gameId'];
+            $gameManager = new GameManager();
+            $gameManager-> addPlayerAtGame($gameId,$player2);
+        }
+        catch (\Exception $e){
+            echo $e->getMessage();
+            exit();
+        }
+    }
+
 
 }
