@@ -45,6 +45,10 @@ class HeroManager extends AbstractManager
 
     }
 
+    /**
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function getHeroIdFromApi()
     {
         $client = new Client([
@@ -57,11 +61,34 @@ class HeroManager extends AbstractManager
             $body = $response->getBody();
             $json = $body->getContents();
             $heros[] = json_decode($json,true);
-            $tabHeroId[] = $heros[$i]['id'];
+            $tabHeroId[] = $heros[$i-1]['id'];
         }
 
 
         return $tabHeroId;
+
+    }
+
+    /**
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getHeroSpeedFromApi()
+    {
+        $client = new Client([
+                'base_uri' => 'https://cdn.rawgit.com/akabab/superhero-api/0.2.0/api/id/',
+            ]
+        );
+
+        for($i = 1; $i < 5; $i++){
+            $response = $client->request('GET', $i . '.json');
+            $body = $response->getBody();
+            $json = $body->getContents();
+            $heros[] = json_decode($json,true);
+            $tabHeroSpeed[] = $heros[$i-1]['powerstats']['speed'];
+        }
+
+        return $tabHeroSpeed;
 
     }
 
