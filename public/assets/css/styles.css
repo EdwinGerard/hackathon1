@@ -1,0 +1,6 @@
+td, th
+
+{
+    width: 30px;        /* dimensions des cellules de la grille*/
+    height: 30px;
+}
