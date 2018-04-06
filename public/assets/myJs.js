@@ -51,7 +51,7 @@ $(' #form_connexion').submit(function(e){
             $('#boxErrorNav').hide();
             $('#boxSuccessNav').show();
             $('#form_connexion').hide();
-
+            location.reload();
 
         }
         //alert(data.data.error);
