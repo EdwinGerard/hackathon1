@@ -39,12 +39,13 @@ abstract class AbstractController
 
     public function session()
     {
-        session_start();
+
         $user=null;
         if (isset($_SESSION['user'])){
             $user = $_SESSION['user'];
 
             return $user;
         }
+
     }
 }
