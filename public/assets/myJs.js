@@ -73,7 +73,7 @@ $(' #form_connexion').submit(function(e){
 $('.join-game').click(function(){
     var gameId = $(this).attr('data-gameId');
     var url='/proc/join_game';
-    $.post(url,{gameId : 'gameId'}, function(data){
+    $.post(url,{gameId : gameId}, function(data){
             alert(data);
     });
 });

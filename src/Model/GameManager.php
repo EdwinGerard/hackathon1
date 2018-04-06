@@ -41,4 +41,17 @@ class GameManager extends AbstractManager
 
         return $statement->fetchAll();
     }
+
+    public function addPlayerAtGame(int $gameId, int $playerId)
+    {
+        // prepared request
+        $sql = 'UPDATE game SET player_id2 = :playerId WHERE id=:gameId';
+        $statement = $this->pdoConnection->prepare($sql);
+        //$statement->setFetchMode(\PDO::FETCH_CLASS, $this->className);
+        $statement->bindValue(':playerId', $playerId );
+        $statement->bindValue(':gameId', $gameId );
+
+        $statement->execute();
+        echo $gameId;
+    }
 }
