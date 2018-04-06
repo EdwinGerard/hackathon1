@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark clearfix">
     <!-- Brand/logo -->
-    <a class="navbar-brand" href="#">Logo</a>
+    <a class="navbar-brand" href="/">WF</a>
 
     <!-- Links -->
     <ul class="navbar-nav ">
@@ -9,23 +9,19 @@
             <a class="nav-link" href="games">Parties</a>
         </li>
         {% endif %}
-    </ul>
-
         {% if user is empty %}
-
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#connexionModal">
-                   Connexion
-                </button>
-            {% else %}
-                <a href="/proc/deconnect"><button type="button" class="btn btn-primary">
-                   Se déconnecter
+            <li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#connexionModal">
+                Connexion
+            </button>
+            </li>
+        {% else %}
+            <li><a href="/proc/deconnect"><button type="button" class="btn btn-primary">
+                    Se déconnecter
                 </button></a>
-
+            </li>
         {% endif %}
-        <div>{{ user.name }}</div>
-
-
-
+        <li><p class="username">{{ user.name }}</pclass></li>
+    </ul>
 
 </nav>
 
