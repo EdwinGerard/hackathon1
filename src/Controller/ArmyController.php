@@ -28,7 +28,7 @@ class ArmyController extends AbstractController
         /*$armyManager = new armyManager();
         $items = $armyManager->selectAll();*/
 
-        return $this->twig->render('Games/army.html.twig');
+        return $this->twig->render('Games/army-rand.html.twig');
     }
 
     /**

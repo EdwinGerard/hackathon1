@@ -12,6 +12,7 @@ use Model\GameManager;
 use Model\HeroManager;
 use Model\TurnManager;
 
+
 class GamesController extends AbstractController
 {
     /**
@@ -87,19 +88,22 @@ class GamesController extends AbstractController
 
 
                 // --------- TODO -> CHOPPER TOUTES LES INFOS DE LA PARTY AVANT ----
-                $positionHeros = [
+                /*$positionHeros = [
                     0 => ['heroId' => 0, 'posId' => 5],
                     1 => ['heroId' => 1, 'posId' => 8],
                     2 => ['heroId' => 2, 'posId' => 12],
                     3 => ['heroId' => 3, 'posId' => 15],
 
-                ];
-                /*$heroManager = new HeroManager();
+                ];*/
+                $heroManager = new HeroManager();
                 $positionHeros = $heroManager->getPositionHeros($gameId);
+                $heroId = $heroManager->getHeroIdFromApi();
                 if (empty($positionHeros)){
-                    $heroManager->addPositionHero();
-                    $positionHeros = $heroManager->getPositionHeros();
-                }*/
+
+                    $heroManager->addPositionHero($gameId, $heroId);
+                    $positionHeros = $heroManager->getPositionHeros($gameId);
+                }
+
 
 
                 return $this->twig->render('Games/party.html.twig',['user' => $this->session(), 'tab'=> $positionHeros, 'turn'=>$turn]);
@@ -131,6 +135,6 @@ class GamesController extends AbstractController
             exit();
         }
         header('Location: /games');
-        exit;;
+        exit;
     }
 }
