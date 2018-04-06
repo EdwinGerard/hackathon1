@@ -2,5 +2,9 @@
 
 {% block content %}
     <h1>Items</h1>
+    {% for hero in heros %}
+        <h2>Test</h2>
+        <h3>{{ hero.name | title }}</h3>
+    {% endfor %}
 
 {% endblock %}
