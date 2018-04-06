@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="/">WF</a>
 
     <!-- Links -->
-    <ul class="navbar-nav ">
+    <ul class="navbar-nav mx-auto">
         {% if user is not empty %}
         <li class="nav-item">
             <a class="nav-link" href="games">Parties</a>
@@ -20,7 +20,7 @@
                 </button></a>
             </li>
         {% endif %}
-        <li><p class="username">{{ user.name }}</pclass></li>
+        <li><p class="username pl-5 mt-1">{{ user.name | upper }}</p></li>
     </ul>
 
 </nav>
