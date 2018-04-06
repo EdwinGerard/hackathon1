@@ -25,9 +25,7 @@ class HeroController extends AbstractController
         $heroManager = new HeroManager();
         $heros = $heroManager->getHeroFromApi();
 
-        foreach ($heros as $hero){
-            echo $hero;
-        }
+        echo $heros;
     }
 
 }

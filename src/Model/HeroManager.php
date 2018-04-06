@@ -37,8 +37,9 @@ class HeroManager extends AbstractManager
             $response = $client->request('GET', $i . '.json');
             $body = $response->getBody();
             $json = $body->getContents();
-            $heros[] = $json;
+            $heros[] = json_decode($json,true);
         }
+        $heros = json_encode($heros);
 
         return $heros;
 

@@ -19,3 +19,8 @@
 #gameGrid tr{
     height: 90px;
 }
+
+.username{
+    color: white;
+    font-size: 18px;
+}
