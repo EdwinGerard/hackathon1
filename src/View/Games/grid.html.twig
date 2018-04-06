@@ -3,24 +3,24 @@
 {% set idCell = 1 %}            {# l'ID de chaque cellule   // JE COMMENCE À 1 ET NON PAS 0 !! #}
 
 
-{{ <table> }}
+<table>
     {% for i in 1..{{ numberLine }} %}
-        {{ <tr> }}
+         <tr>
 
         {% for j in 1..{{ numberColumn }} %}
-            {{ <td title="Id cellule = {{ idCell }}. Coordonnées X={{ j }} Y={{ i }}" class="{{ idCell }}"></td> }}
+             <td title="Id cellule = {{ idCell }}. Coordonnées X={{ j }} Y={{ i }}" class="{{ idCell }}"></td>
             {% set idCell = idCell+1 %}
             {% endfor %}
 
-        {{ </tr> }}
+         </tr>
     {% endfor %}
 
 
 {# Mise du code original en commentaire #}
 
-{#
 
-    echo '<table>';
+
+{#    echo '<table>';
 for ($i=1; $i<$numberLine+1; $i++){
 echo '<tr>';
 
