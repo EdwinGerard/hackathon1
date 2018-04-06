@@ -24,6 +24,8 @@ $routes = [
     'Games' => [
         ['games', '/games',['GET', 'POST']], // action, url, method
         ['joinGame','/proc/join_game',['GET', 'POST']],
+        ['addGame','/proc/addGame',['GET', 'POST']],
+        ['myGame','/myGame',['GET', 'POST']],
     ],
 
     'Army' => [
@@ -34,6 +36,10 @@ $routes = [
         ['signIn','/proc/sign_in',['GET', 'POST']],
         ['connexion','/proc/connexion',['GET', 'POST']],
         ['deconnect','/proc/deconnect',['GET', 'POST']],
+    ],
+
+    'Hero' => [
+        ['afficheHero','/hero','GET'],
     ],
 
 ];

@@ -1,3 +1,4 @@
+
 .card-checkbox {
     cursor: pointer;
     box-sizing: border-box;
@@ -13,4 +14,30 @@
 
 .card-checkbox-checked {
     border-color: white;
+}
+
+#gameGrid{
+    /*width:100%;*/
+    text-align:center;
+    margin:10px auto;
+         /* dimensions des cellules de la grille*/
+
+
+}
+
+#gameGrid td{
+    border : 1px solid black;
+    /*width : calc(100vw / 10);*/
+   /* height : calc(100vw / 10);*/
+    width: 90px;        /* dimensions des cellules de la grille*/
+
+}
+
+#gameGrid tr{
+    height: 90px;
+}
+
+.username{
+    color: white;
+    font-size: 18px;
 }
