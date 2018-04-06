@@ -117,7 +117,7 @@ CREATE TABLE `game` (
   KEY `fk_game_2_idx` (`player_id2`),
   CONSTRAINT `fk_Game_1` FOREIGN KEY (`player_id1`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_game_2` FOREIGN KEY (`player_id2`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,8 +126,36 @@ CREATE TABLE `game` (
 
 LOCK TABLES `game` WRITE;
 /*!40000 ALTER TABLE `game` DISABLE KEYS */;
-INSERT INTO `game` VALUES (1,'zrgzrg',1,2),(4,'zrgzrh',1,2),(5,'efea',1,NULL),(6,'gzrhr',2,NULL),(7,'aeaea',2,1);
+INSERT INTO `game` VALUES (1,'zrgzrg',1,2),(4,'zrgzrh',1,2),(5,'efea',1,2),(6,'gzrhr',2,NULL),(7,'aeaea',2,1),(9,'zrhnet',1,2),(10,'zrrh',1,2),(11,'zrgrzg',1,2),(12,'thtehe',1,2),(13,'fgzrgz',1,2),(14,'brbrb',1,2);
 /*!40000 ALTER TABLE `game` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `gameStep`
+--
+
+DROP TABLE IF EXISTS `gameStep`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `gameStep` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `step` int(11) NOT NULL,
+  `game_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `game_id_UNIQUE` (`game_id`),
+  KEY `fk_gameStep_1_idx` (`game_id`),
+  CONSTRAINT `fk_gameStep_1` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gameStep`
+--
+
+LOCK TABLES `gameStep` WRITE;
+/*!40000 ALTER TABLE `gameStep` DISABLE KEYS */;
+INSERT INTO `gameStep` VALUES (1,1,4),(5,1,5),(6,1,1),(7,1,11),(8,1,13);
+/*!40000 ALTER TABLE `gameStep` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -215,4 +243,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-06  4:39:18
+-- Dump completed on 2018-04-06  6:59:04
