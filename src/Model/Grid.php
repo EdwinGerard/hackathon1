@@ -25,9 +25,11 @@ class Grid
         $actualPosition = $hero->getPosition();
         $moveX = $position->getPositionX() - $actualPosition->getPositionX();
         $moveY = $position->getPositionY() - $actualPosition->getPositionY();
+        $stats = new Stats();
         if (($moveX + $moveY) == $nbPa && $nbPa <= $heroPa){
             $hero->setPosition($position);
-            $hero->getStats()->setPa(($heroPa - $nbPa));
+            $stats->setPa(($heroPa - $nbPa));
+            $hero->setStats($stats);
         }else{
             throw new \Exception('Pas assez de PA');
         }

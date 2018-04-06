@@ -132,25 +132,30 @@ class Hero
         $heroPosY = $hero->getPosition()->getPositionY();
         $thisPosX = $this->getPosition()->getPositionX();
         $thisPosY = $this->getPosition()->getPositionY();
+        $stats = new Stats();
 
         if (($thisPosX - $heroPosX) == 1 OR ($thisPosY - $heroPosY) == 1) {
             if ($heroPa >= 1) {
                 if ($hero->isDefense() == true) {
-                    $hero->getStats()->setResistance($heroRes * 2);
+                    $stats->setResistance($heroRes*2);
+                    $hero->setStats($stats);
                     if ($heroRes >= $this->getStats()->getMelee()) {
-                        $hero->getStats()->setPv($heroPv);
-                        $hero->getStats()->setPa($heroPa - 1);
+                        $stats->setPa($heroPa - 1);
+                        $hero->setStats($stats);
                     } else {
-                        $hero->getStats()->setPv($heroPv - ($this->getStats()->getMelee() * 0.1 - $heroRes * 0.1));
-                        $hero->getStats()->setPa($heroPa - 1);
+                        $stats->setPv($heroPv - ($this->getStats()->getMelee() * 0.1 - $heroRes * 0.1));
+                        $stats->setPa($heroPa - 1);
+                        $hero->setStats($stats);
                     }
                 } else {
                     if ($hero->getStats()->getResistance() >= $this->getStats()->getMelee()) {
-                        $hero->getStats()->setPv($heroPv);
-                        $hero->getStats()->setPa($heroPa - 1);
+                        $stats->setPv($heroPv);
+                        $stats->setPa($heroPa - 1);
+                        $hero->setStats($stats);
                     } else {
-                        $hero->getStats()->setPv($heroPv - ($this->getStats()->getMelee() * 0.1 - $heroRes * 0.1));
-                        $hero->getStats()->setPa($heroPa - 1);
+                        $stats->setPv($heroPv - ($this->getStats()->getMelee() * 0.1 - $heroRes * 0.1));
+                        $stats->setPa($heroPa - 1);
+                        $hero->setStats($stats);
                     }
                 }
             } else {
@@ -174,25 +179,30 @@ class Hero
         $heroPosY = $hero->getPosition()->getPositionY();
         $thisPosX = $this->getPosition()->getPositionX();
         $thisPosY = $this->getPosition()->getPositionY();
+        $stats = new Stats();
 
         if (($thisPosX - $heroPosX) == 3 OR ($thisPosY - $heroPosY) == 3) {
             if ($heroPa >= 2) {
                 if ($hero->isDefense() == true) {
                     $hero->getStats()->setResistance($heroRes * 2);
                     if ($heroRes >= $this->getStats()->getDistant()) {
-                        $hero->getStats()->setPv($heroPv);
-                        $hero->getStats()->setPa($heroPa - 2);
+                        $stats->setPv($heroPv);
+                        $stats->setPa($heroPa - 2);
+                        $hero->setStats($stats);
                     } else {
-                        $hero->getStats()->setPv($heroPv - ($this->getStats()->getDistant() * 0.1 - $heroRes * 0.1));
-                        $hero->getStats()->setPa($heroPa - 2);
+                        $stats->setPv($heroPv - ($this->getStats()->getDistant() * 0.1 - $heroRes * 0.1));
+                        $stats->setPa($heroPa - 2);
+                        $hero->setStats($stats);
                     }
                 } else {
                     if ($heroRes >= $this->getStats()->getDistant()) {
-                        $hero->getStats()->setPv($heroPv);
-                        $hero->getStats()->setPa($heroPa - 2);
+                        $stats->setPv($heroPv);
+                        $stats->setPa($heroPa - 2);
+                        $hero->setStats($stats);
                     } else {
-                        $hero->getStats()->setPv($heroPv - ($this->getStats()->getDistant() * 0.1 - $heroRes * 0.1));
-                        $hero->getStats()->setPa($heroPa - 2);
+                        $stats->setPv($heroPv - ($this->getStats()->getDistant() * 0.1 - $heroRes * 0.1));
+                        $stats->setPa($heroPa - 2);
+                        $hero->setStats($stats);
                     }
                 }
             } else {
@@ -215,11 +225,13 @@ class Hero
         $heroPosY = $hero->getPosition()->getPositionY();
         $thisPosX = $this->getPosition()->getPositionX();
         $thisPosY = $this->getPosition()->getPositionY();
+        $stats = new Stats();
 
         if (($thisPosX - $heroPosX) == 4 OR ($thisPosY - $heroPosY) == 4) {
             if ($heroPa >= 4) {
-                $hero->getStats()->setPv($heroPv - ($this->getStats()->getSpell() * 0.1));
-                $hero->getStats()->setPa($heroPa - 4);
+                $stats->setPv($heroPv - ($this->getStats()->getSpell() * 0.1));
+                $stats->setPa($heroPa - 4);
+                $hero->setStats($stats);
             } else {
                 throw new \Exception('Pas assez de PA');
             }
