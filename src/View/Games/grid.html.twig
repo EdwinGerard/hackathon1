@@ -14,3 +14,9 @@
          </tr>
     {% endfor %}
 </table>
+
+<script>
+    $.post('/hero',function(data){
+        alert(data);
+    },'json');
+</script>
