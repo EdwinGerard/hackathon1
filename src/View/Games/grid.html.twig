@@ -8,28 +8,10 @@
          <tr>
 
         {% for j in 1..{{ numberColumn }} %}
-             <td title="Id cellule = {{ idCell }}. Coordonnées X={{ j }} Y={{ i }}" class="{{ idCell }}"></td>
+             <td data-coord="['{{ j }}','{{ i }}']" title="Id cellule = {{ idCell }}. Coordonnées X={{ j }} Y={{ i }}" class="{{ idCell }}"></td>
             {% set idCell = idCell+1 %}
             {% endfor %}
 
          </tr>
     {% endfor %}
-
-
-{# Mise du code original en commentaire #}
-
-
-
-{#    echo '<table>';
-for ($i=1; $i<$numberLine+1; $i++){
-echo '<tr>';
-
-    for ($j=1; $j<$numberColumn+1; $j++){
-    echo '<td title="Id cellule = ' . $idCell . '. Coordonnées X=' . $j . ' Y=' . $i . '" class="' . $idCell . '"</td>';
-    $idCell++;
-    }
-    echo '</tr>';
-}
-echo '</table>';
-
-#}
+</table>
