@@ -24,6 +24,7 @@ $routes = [
     'Games' => [
         ['games', '/games',['GET', 'POST']], // action, url, method
         ['joinGame','/proc/join_game',['GET', 'POST']],
+        ['addGame','/proc/addGame',['GET', 'POST']]
     ],
 
     'Army' => [
