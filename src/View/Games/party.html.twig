@@ -9,3 +9,13 @@
 
 
 
+{% block javascript %}
+<script>
+$("table").click(function(){
+    $.post("/hero", function(data, status){
+        //alert('test');
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+});
+</script>
+{% endblock %}
