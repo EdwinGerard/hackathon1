@@ -28,11 +28,14 @@ CREATE TABLE `Hero` (
   `isDefense` tinyint(1) DEFAULT NULL,
   `stats_id` int(11) NOT NULL,
   `position_id` int(11) NOT NULL,
+  `game_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_Hero_1_idx` (`stats_id`),
   KEY `fk_Hero_2_idx` (`position_id`),
+  KEY `fk_Hero_3_idx` (`game_id`),
   CONSTRAINT `fk_Hero_1` FOREIGN KEY (`stats_id`) REFERENCES `stats` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Hero_2` FOREIGN KEY (`position_id`) REFERENCES `cell` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Hero_2` FOREIGN KEY (`position_id`) REFERENCES `cell` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Hero_3` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -145,7 +148,7 @@ CREATE TABLE `gameStep` (
   UNIQUE KEY `game_id_UNIQUE` (`game_id`),
   KEY `fk_gameStep_1_idx` (`game_id`),
   CONSTRAINT `fk_gameStep_1` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +157,7 @@ CREATE TABLE `gameStep` (
 
 LOCK TABLES `gameStep` WRITE;
 /*!40000 ALTER TABLE `gameStep` DISABLE KEYS */;
-INSERT INTO `gameStep` VALUES (1,1,4),(5,1,5),(6,1,1),(7,1,11),(8,1,13);
+INSERT INTO `gameStep` VALUES (1,1,4),(5,1,5),(6,1,1),(7,2,11),(8,2,13),(9,1,14),(10,1,7),(11,1,12);
 /*!40000 ALTER TABLE `gameStep` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,4 +246,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-06  6:59:04
+-- Dump completed on 2018-04-06 11:21:02
