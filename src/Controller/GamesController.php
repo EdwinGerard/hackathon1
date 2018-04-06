@@ -21,8 +21,10 @@ class GamesController extends AbstractController
      */
     public function games()
     {
+        session_start();
+
         $gameManager = new GameManager();
-        $games = $gameManager->gameList();
+        $games = $gameManager->gameList($_SESSION['user']['id']);
 
 
         /* return $this->twig->render('Item/index.html.twig', ['items' => $items]);*/
