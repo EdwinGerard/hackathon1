@@ -1,28 +1,48 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Games Games Games</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-</head>
+{% extends 'layout.html.twig' %}
 
-<body class="container-fluid">
+{% block content %}
+
     <section class="row justify-content-center m-3">
-        <form action="" method="post" class="form-inline ">
+        <form action="" method="post" class="form-inline">
                 <label for="gameName" class="col-xl-auto mx-1">Nom de la partie</label>
                 <input type="text" name="gameName" id="gameName" class="form-control col-xl-auto mx-1" placeholder="Marvel vs DC">
                 <input name="submit" id="creat" class="btn btn-warning col-xl-auto mx-1 px-5" type="button" value="CREER LA PARTIE">
         </form>
     </section>
+<div class="container">
+    <section>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-        crossorigin="anonymous"></script>
-</body>
-</html>
+        <table class="table table-dark table-hover" id="list-game">
+            <thead>
+            <tr>
+                <th>Nom de la partie</th>
+                <th>joueur 1</th>
+                <th>joueur 2</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for game in games %}
+            <tr data-id="{{ game.id }}" data-player2="{{ game.playerId2 }}" class="tr-game">
+                <td>{{ game.name }}</td>
+                <td>{{ game.player1 }}</td>
+                <td>
+                    {% if game.player2 is empty %}
+                        {% if user.id != game.playerId1 %}
+                    <button class="join-game btn btn-primary" data-gameId="{{ game.id }}">Rejoindre</button>
+                            {% else %}
+                                En attente d'un joueur
+                            {% endif %}
+                    {% else %}
+                    {{ game.player2 }}
+                        {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+
+    </section>
+</div>
+{% endblock %}

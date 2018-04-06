@@ -9,14 +9,13 @@
 
 namespace Controller;
 
-use Model\Home;
-use Model\HomeManager;
+use Model\ArmyManager;
 
 /**
  * Class ItemController
  *
  */
-class HomeController extends AbstractController
+class ArmyController extends AbstractController
 {
 
     /**
@@ -24,16 +23,12 @@ class HomeController extends AbstractController
      *
      * @return string
      */
-    public function index()
+    public function army()
     {
+        /*$armyManager = new armyManager();
+        $items = $armyManager->selectAll();*/
 
-       /* return $this->twig->render('Item/index.html.twig', ['items' => $items]);*/
-        return $this->twig->render('Home/index.html.twig',['user' => $this->session()]);
-    }
-
-    public function signIn()
-    {
-        return $this->twig->render('Home/signin.html.twig');
+        return $this->twig->render('Games/army.html.twig');
     }
 
     /**
