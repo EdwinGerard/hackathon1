@@ -76,6 +76,13 @@ class GamesController extends AbstractController
                 return $this->twig->render('Games/army.html.twig',['user' => $this->session()]);
             }
 
+            if ($gameStep['step'] == 2){ // on charge la partie
+
+                // --------- TODO -> CHOPPER TOUTES LES INFOS DE LA PARTY AVANT ----
+
+                return $this->twig->render('Games/party.html.twig',['user' => $this->session()]);
+            }
+
         }
         catch (\Exception $e){
            /* $data['error'] = $e->getMessage();
