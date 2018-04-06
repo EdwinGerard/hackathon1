@@ -74,3 +74,16 @@ $('.join-game').click(function(){
     }, "json");
 });
 
+// --- lancement d'une partie
+
+$('.tr-game').click(function(){
+    var playerId2 = $(this).attr('data-player2');
+    var id= $(this).attr('data-id');
+    if (playerId2 != ""){ // on authorize l'envoie de la partie
+        //alert(playerId2);
+        $(location).attr('href',"/myGame?id="+id);
+    }
+    else{
+        //alert('vzvr');
+    }
+});
