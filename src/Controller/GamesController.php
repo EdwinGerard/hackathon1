@@ -26,7 +26,7 @@ class GamesController extends AbstractController
 
 
         /* return $this->twig->render('Item/index.html.twig', ['items' => $items]);*/
-        return $this->twig->render('Games/games.html.twig',['games' => $games]);
+        return $this->twig->render('Games/games.html.twig',['games' => $games ,'user' => $this->session()]);
     }
 
 
