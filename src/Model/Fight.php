@@ -21,15 +21,15 @@ class Fight
      */
     public function resolution(Hero $hero1, Hero $hero2): string
     {
-        if ($hero1->getStats()->getPv() == 0 && $hero2->getStats()->getPv() !== 0){
+        if ($hero1->getStats()->getPv() <= 0 && $hero2->getStats()->getPv() > 0){
             return $hero1->getName() . ' a perdu lamentablement!!';
         }
 
-        if ($hero2->getStats()->getPv() == 0 && $hero1->getStats()->getPv() !== 0){
+        if ($hero2->getStats()->getPv() <= 0 && $hero1->getStats()->getPv() > 0){
             return $hero2->getName() . ' a perdu lamentablement!!';
         }
 
-        if ($hero1->getStats()->getPv() == 0 && $hero2->getStats()->getPv() == 0){
+        if ($hero1->getStats()->getPv() <= 0 && $hero2->getStats()->getPv() <= 0){
             return $hero1->getName() . ' et ' . $hero2->getName() . ' ont fait match nul!!';
         }
 
