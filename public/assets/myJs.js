@@ -61,20 +61,16 @@ $(' #form_connexion').submit(function(e){
 
 // ---------- selection de game dans la liste ------
 
-/*$('#list-game tr.tr-game').click(function(){
-    var id = $(this).attr('data-id');
-    var playerId2 = $(this).attr('data-player2');
-    if (playerId2 == null){
-        // on peut s'ajouter à la partie
-
-    }
-});*/
-
 $('.join-game').click(function(){
     var gameId = $(this).attr('data-gameId');
     var url='/proc/join_game';
     $.post(url,{gameId : gameId}, function(data){
-            alert(data);
-    });
+            if(data.error == null){
+                location.reload();
+            }
+            else {
+                alert('erreur');
+            }
+    }, "json");
 });
 

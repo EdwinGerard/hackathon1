@@ -45,9 +45,11 @@ class GamesController extends AbstractController
             $gameManager-> addPlayerAtGame($gameId,$player2);
         }
         catch (\Exception $e){
-            echo $e->getMessage();
+            $data['error'] = $e->getMessage();
+            echo json_encode($data);
             exit();
         }
+
     }
 
 

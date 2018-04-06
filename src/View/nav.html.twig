@@ -4,9 +4,11 @@
 
     <!-- Links -->
     <ul class="navbar-nav ">
+        {% if user is not empty %}
         <li class="nav-item">
             <a class="nav-link" href="games">Parties</a>
         </li>
+        {% endif %}
     </ul>
 
         {% if user is empty %}
