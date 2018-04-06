@@ -8,7 +8,7 @@
          <tr>
 
         {% for j in 1..{{ numberColumn }} %}
-             <td title="Id cellule = {{ idCell }}. Coordonnées X={{ j }} Y={{ i }}" class="{{ idCell }}"></td>
+             <td data-coord="['{{ j }}','{{ i }}']" title="Id cellule = {{ idCell }}. Coordonnées X={{ j }} Y={{ i }}" class="{{ idCell }}"></td>
             {% set idCell = idCell+1 %}
             {% endfor %}
 
