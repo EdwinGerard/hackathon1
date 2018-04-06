@@ -94,9 +94,8 @@ class HeroManager extends AbstractManager
 
     public function getPositionHeros(int $gameId)
     {
-        $sql = "SELECT Hero.id, Hero.position_id FROM Hero 
-                      INNER JOIN army ON Hero.id = army.hero_id 
-                        INNER JOIN game ON army.game_id = :gameId";
+        $sql = "SELECT Hero.id, Hero.position_id,Hero.name FROM Hero 
+                       WHERE game_id = :gameId";
         $statement = $this->pdoConnection->prepare($sql);
         $statement->setFetchMode(\PDO::FETCH_ASSOC);
         $statement->bindValue(':gameId', $gameId, \PDO::PARAM_INT);
@@ -110,13 +109,11 @@ class HeroManager extends AbstractManager
     {
         foreach ($herosId as $heroId){
             for ($positionId = 0; $positionId < 4; $positionId++) {
-                $sql = "INSERT INTO Hero (position_id)
-                    INNER JOIN army ON :heroId = army.hero_id 
-                      INNER JOIN game ON army.game_id = :gameId VALUES Hero.position_id = :positionId ";
+                $sql = "INSERT INTO Hero (position_id,game_id)
+                         VALUES (:positionId ,:gameId)";
                 $statement = $this->pdoConnection->prepare($sql);
                 $statement->setFetchMode(\PDO::FETCH_ASSOC);
                 $statement->bindValue(':gameId', $gameId, \PDO::PARAM_INT);
-                $statement->bindValue(':heroId', $heroId, \PDO::PARAM_INT);
                 $statement->bindValue(':positionId', $positionId, \PDO::PARAM_INT);
                 $statement->execute();
             }
