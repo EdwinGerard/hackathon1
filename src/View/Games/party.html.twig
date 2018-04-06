@@ -12,10 +12,24 @@
 {% block javascript %}
 <script>
 $("table").click(function(){
-    $.post("/hero", function(data, status){
+    $.post("/hero", function(data, status) {
         //alert('test');
-        alert("Data: " + data + "\nStatus: " + status);
+        //alert("Data: " + data + "\nStatus: " + status);
+        //var tab = [1,4,5,8];
+        var obj = JSON.parse(data);
+
+        for(var element in obj) {
+            var id = obj[element].id - 1;
+            $("td[data-hero='"+id+"'").html('<img class="thumb" src='+obj[element].images.sm+'>');
+            console.log(obj[element].id-1); // t'affichera dans la console valeur et valeur2
+        }
+       //alert(mavar);
+        //alert(obj[0].name);
+
+
     });
+
+
 });
 </script>
 {% endblock %}
