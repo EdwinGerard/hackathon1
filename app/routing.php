@@ -39,7 +39,7 @@ $routes = [
     ],
 
     'Hero' => [
-        ['afficheHero','/hero','GET'],
+        ['afficheHero','/hero',['GET', 'POST']],
     ],
 
 ];

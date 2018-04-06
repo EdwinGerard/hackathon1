@@ -41,3 +41,9 @@
     color: white;
     font-size: 18px;
 }
+
+.thumb{
+    width:88px;
+    height:88px;
+    display:block;
+}

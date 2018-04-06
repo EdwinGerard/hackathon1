@@ -73,8 +73,22 @@ class GamesController extends AbstractController
             if ($gameStep['step'] == 2){ // on charge la partie
 
                 // --------- TODO -> CHOPPER TOUTES LES INFOS DE LA PARTY AVANT ----
+                /*$tab = [
+                    0 => ['heroId' => 0, 'posId' => 5],
+                    1 => ['heroId' => 1, 'posId' => 8],
+                    2 => ['heroId' => 2, 'posId' => 12],
+                    3 => ['heroId' => 3, 'posId' => 15],
 
-                return $this->twig->render('Games/party.html.twig',['user' => $this->session()]);
+                ];*/
+                $heroManager = new HeroManager();
+                $positionHeros = $heroManager->getPositionHeros($gameId);
+                if (empty($positionHeros)){
+                    $heroManager->addPositionHero();
+                    $positionHeros = $heroManager->getPositionHeros();
+                }
+
+
+                return $this->twig->render('Games/party.html.twig',['user' => $this->session(), 'tab'=> $positionHeros]);
             }
 
         }
