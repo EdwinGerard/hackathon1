@@ -78,3 +78,28 @@ $('.join-game').click(function(){
     });
 });
 
+// card checkbox
+// init the state from the input
+$('.card-checkbox').on('change', function() {
+    if($('.card-checkbox:checked').length > 2) {
+        this.checked = false;
+    }
+});
+
+$(".card-checkbox").each(function () {
+    if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
+        $(this).addClass('card-checkbox-checked');
+    }
+    else {
+        $(this).removeClass('card-checkbox-checked');
+    }
+});
+
+// sync the state to the input
+$(".card-checkbox").on("click", function (e) {
+    $(this).toggleClass('card-checkbox-checked');
+    var $checkbox = $(this).find('input[type="checkbox"]');
+    $checkbox.prop("checked",!$checkbox.prop("checked"))
+
+    e.preventDefault();
+});
