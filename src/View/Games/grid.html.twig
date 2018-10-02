@@ -1,0 +1,16 @@
+{% set numberColumn = 17 %}     {# définir ici en dur le nombre de colonnes #}
+{% set numberLine = 8 %}     {# définir ici en dur le nombre de lignes #}
+{% set idCell = 1 %}            {# l'ID de chaque cellule   // JE COMMENCE À 1 ET NON PAS 0 !! #}
+
+<table id="gameGrid">
+    {% for i in 1 .. numberLine  %}
+         <tr>
+
+        {% for j in 1 .. numberColumn %}
+             <td data-coord="['{{ j }}','{{ i }}']" data-id="{{ idCell }}" data-hero="{% for hero in tab %}{% if hero.posId == idCell %}{{ hero.heroId }}{% endif %}{% endfor %}"></td>
+            {% set idCell = idCell+1 %}
+        {% endfor %}
+
+         </tr>
+    {% endfor %}
+</table>
